@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klimovich80/Horse-club-daily.git"
+  },
+  "author": "Klimovich Pavel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klimovich80/Horse-club-daily/issues"
+  },
+  "homepage": "https://github.com/klimovich80/Horse-club-daily#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.1"
+  }
+}
