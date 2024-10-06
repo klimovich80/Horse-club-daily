@@ -46,13 +46,28 @@ const createClient = (req, res) => {
     });
 };
 
+// удаление клиента из БД и отправка клиента в ответе
+const deleteClient = (req, res) => {
+  clientModel.findByIdAndDelete(req.params.client_id)
+    .then((client) => {
+      res.send(client);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Internal server error',
+        err: err.message,
+        stack: err.stack,
+      });
+    });
+};
+
 module.exports = {
   getClients,
   getClientById,
   createClient,
+  deleteClient,
 };
 
 // TODO:
 // удалить клиента из БД
-// обновить клиента в БД
-// изменить клиента в БД
+// обновить данные клиента в БД
