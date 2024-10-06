@@ -60,7 +60,7 @@ const deleteClient = (req, res) => {
       });
     });
 };
-
+// экспортируем контроллер клиентов
 module.exports = {
   getClients,
   getClientById,
@@ -69,5 +69,4 @@ module.exports = {
 };
 
 // TODO:
-// удалить клиента из БД
 // обновить данные клиента в БД
