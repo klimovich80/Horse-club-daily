@@ -19,7 +19,7 @@ const getHorses = (req, res) => {
 
 // получение лошадки по id
 const getHorseById = (req, res) => {
-  horseModel.findById(req.params.id)
+  horseModel.findById(req.params.horse_id)
     .then((horse) => {
       res.send(horse);
     })
@@ -48,8 +48,8 @@ const createHorse = (req, res) => {
 }
 
 // удаление лошадки из БД по id
-const deleteHorseById = (req, res) => {
-  horseModel.findByIdAndDelete(req.params.id)
+const deleteHorse = (req, res) => {
+  horseModel.findByIdAndDelete(req.params.horse_id)
     .then((horse) => {
       res.send(horse);
     })
@@ -67,6 +67,7 @@ module.exports = {
   getHorses,
   getHorseById,
   createHorse,
+  deleteHorse,
 };
 
 // TODO:
