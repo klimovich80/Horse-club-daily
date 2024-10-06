@@ -47,6 +47,21 @@ const createHorse = (req, res) => {
     });
 }
 
+// удаление лошадки из БД по id
+const deleteHorseById = (req, res) => {
+  horseModel.findByIdAndDelete(req.params.id)
+    .then((horse) => {
+      res.send(horse);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Internal server error',
+        err: err.message,
+        stack: err.stack,
+      });
+    });
+}
+
 // экспортируем контроллеры лошадок
 module.exports = {
   getHorses,
@@ -56,6 +71,3 @@ module.exports = {
 
 // TODO:
 // 3. Добавить контроллер для обновления лошадки
-// 4. Добавить контроллер для удаления лошадки
-// 5. Добавить контроллер для получения лошадок по фильтру
-// 6. Добавить контроллер для получения лошадок по странице
