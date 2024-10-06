@@ -1,0 +1,10 @@
+:root {
+  --text-color_bright: rgba(255, 255, 255, 1);
+  --text-color_dark: rgba(0, 0, 0, 1);
+  --background-color_bright: rgba(255, 255, 255, 1);
+  --background-color_dark: rgba(0, 0, 0, 1);
+  --basic-color_1: #303f9f;
+  --header-color_1: #3f51b5;
+  --header-color_2: #303f9f;
+  --footer-color: #3f51b5;
+}

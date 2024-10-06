@@ -1,0 +1,10 @@
+.header__subitem {
+  margin: 0;
+  padding: 0;
+  list-style-image: url('../../../images/navigate_next.svg');
+  display: inline;
+}
+
+.header__subitem::marker {
+  background-color: brown;
+}

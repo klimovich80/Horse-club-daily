@@ -1,0 +1,6 @@
+.header__navigation {
+  margin: 0;
+  padding: 0 16px;
+  background-color: var(--header-color_2);
+  color: var(--text-color_bright);
+}
