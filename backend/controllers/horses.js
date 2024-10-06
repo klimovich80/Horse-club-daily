@@ -9,7 +9,7 @@ const getHorses = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: 'Internal server error',
+        message: 'Внутренняя ошибка сервера',
         err: err.message,
         stack: err.stack,
       });

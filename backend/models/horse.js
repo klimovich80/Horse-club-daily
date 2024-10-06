@@ -16,7 +16,7 @@ const horseSchema = new mongoose.Schema({
   price: Number,
   // фото лошади
   image: String
-});
+}, { timestamps: true });
 
 // экспортируем модель
 module.exports = mongoose.model('horse', horseSchema);
