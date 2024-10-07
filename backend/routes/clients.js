@@ -4,7 +4,8 @@ const {
   getClients,
   getClientById,
   createClient,
-  deleteClient
+  deleteClient,
+  updateClient
 } = require('../controllers/clients');
 // получить всех клиентов
 router.get('/', getClients);
@@ -14,5 +15,7 @@ router.get('/:client_id', getClientById);
 router.post('/', createClient);
 // удалить клиента
 router.delete('/:client_id', deleteClient);
+//обновить клиента
+router.patch('/:client_id', updateClient);
 
 module.exports = router;

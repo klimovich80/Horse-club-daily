@@ -62,13 +62,26 @@ const deleteHorse = (req, res) => {
     });
 }
 
+//обновление лошадки в БД по id
+const updateHorse = (req, res) => {
+  horseModel.findByIdAndUpdate(req.params.horse_id, req.body, { new: true })
+    .then((horse) => {
+      res.send(horse);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Internal server error',
+        err: err.message,
+        stack: err.stack,
+      });
+    });
+}
+
 // экспортируем контроллеры лошадок
 module.exports = {
   getHorses,
   getHorseById,
   createHorse,
   deleteHorse,
+  updateHorse,
 };
-
-// TODO:
-// 3. Добавить контроллер для обновления лошадки

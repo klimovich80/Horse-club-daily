@@ -4,7 +4,8 @@ const {
   getHorses,
   getHorseById,
   createHorse,
-  deleteHorse
+  deleteHorse,
+  updateHorse
 } = require('../controllers/horses');
 
 //получение всех лошадей с сервера
@@ -18,5 +19,8 @@ router.post('/', createHorse);
 
 //удаление лошади
 router.delete('/:horse_id', deleteHorse);
+
+//обновление лошади
+router.patch('/:horse_id', updateHorse);
 
 module.exports = router;

@@ -60,13 +60,26 @@ const deleteClient = (req, res) => {
       });
     });
 };
+
+// обновление данных клиента в БД и отправка клиента в ответе
+const updateClient = (req, res) => {
+  clientModel.findByIdAndUpdate(req.params.client_id, req.body, { new: true })
+    .then((client) => {
+      res.send(client);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: 'Internal server error',
+        err: err.message,
+        stack: err.stack,
+      });
+    });
+};
 // экспортируем контроллер клиентов
 module.exports = {
   getClients,
   getClientById,
   createClient,
   deleteClient,
+  updateClient
 };
-
-// TODO:
-// обновить данные клиента в БД
