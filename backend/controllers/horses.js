@@ -16,7 +16,7 @@ const getHorses = (req, res, next) => {
 }
 
 // получение лошадки по id
-const getHorseById = (req, res) => {
+const getHorseById = (req, res, next) => {
   horseModel.findById(req.params.horse_id)
     .then((horse) => {
       res.status(OK_STATUS).send(horse);
@@ -38,7 +38,7 @@ const createHorse = (req, res, next) => {
 }
 
 // удаление лошадки из БД по id
-const deleteHorse = (req, res) => {
+const deleteHorse = (req, res, next) => {
   horseModel.findByIdAndDelete(req.params.horse_id)
     .then((horse) => {
       res.status(OK_STATUS).send(horse);
@@ -49,7 +49,7 @@ const deleteHorse = (req, res) => {
 }
 
 //обновление лошадки в БД по id
-const updateHorse = (req, res) => {
+const updateHorse = (req, res, next) => {
   horseModel.findByIdAndUpdate(req.params.horse_id, req.body, { new: true })
     .then((horse) => {
       res.status(OK_STATUS).send(horse);
