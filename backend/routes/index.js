@@ -6,6 +6,8 @@ const clientRouter = require('./clients');
 const horseRouter = require('./horses');
 // подключаем маршруты для записей
 const recordRouter = require('./records');
+// подключаем маршруты для конюшен
+const stapleRouter = require('./staples');
 // используем маршруты
 // клиенты
 router.use('/clients', clientRouter);
@@ -13,6 +15,8 @@ router.use('/clients', clientRouter);
 router.use('/horses', horseRouter);
 // записи
 router.use('/records', recordRouter);
+// конюшен
+router.use('/staples', stapleRouter);
 // документ не найден
 router.use(() => {
   throw new DocumentNotFoundError('Страница по указанному адресу не найдена(')

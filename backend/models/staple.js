@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const stapleSchema = new mongoose.Schema({
   openedOn: Date, // дата открытия
   name: String, // имя конюшни
-  adres: String, // адрес конюшни
+  adress: String, // адрес конюшни
+  photo: String, // фото конюшни
   website: String, // сайт конюшни
   social: String, // социальные сети
   phoneNumber: String, // телефон конюшни
