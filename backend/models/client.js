@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // схема клиента
-const clientShema = new mongoose.Schema({
+const clientSchema = new mongoose.Schema({
   //имя клиента
   firstName: {
     type: String,
@@ -107,4 +107,4 @@ const clientShema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('client', clientShema);
+module.exports = mongoose.model('client', clientSchema);

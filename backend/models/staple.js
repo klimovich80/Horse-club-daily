@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // схема конюшни
-const clientShema = new mongoose.Schema({
+const stapleSchema = new mongoose.Schema({
   openedOn: Date, // дата открытия
   name: String, // имя конюшни
   adres: String, // адрес конюшни
@@ -12,4 +12,4 @@ const clientShema = new mongoose.Schema({
   closed: Boolean, // закрыто ли конюшня
 }, { timestamps: true });
 
-module.exports = mongoose.model('staple', stapleShema);
+module.exports = mongoose.model('staple', stapleSchema);
