@@ -7,9 +7,9 @@ const horseRouter = require('./horses');
 // подключаем маршруты для записей
 const recordRouter = require('./records');
 // используем маршруты
-//клиенты
+// клиенты
 router.use('/clients', clientRouter);
-//лошади
+// лошади
 router.use('/horses', horseRouter);
 // записи
 router.use('/records', recordRouter);
