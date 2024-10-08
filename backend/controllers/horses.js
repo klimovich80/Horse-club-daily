@@ -1,18 +1,16 @@
 //контроллеры лошадок
 const horseModel = require('../models/horse');
+// контроллеры ошибок
+const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 
 // получение всех лошадок из БД и отправка клиентов в ответе
-const getHorses = (req, res) => {
+const getHorses = (req, res, next) => {
   horseModel.find({})
     .then((horses) => {
-      res.send(horses);
+      res.status(OK_STATUS).send(horses);
     })
     .catch((err) => {
-      res.status(500).send({
-        message: 'Внутренняя ошибка сервера',
-        err: err.message,
-        stack: err.stack,
-      });
+      errorHandler(err, next)
     });
 
 }
@@ -21,14 +19,10 @@ const getHorses = (req, res) => {
 const getHorseById = (req, res) => {
   horseModel.findById(req.params.horse_id)
     .then((horse) => {
-      res.send(horse);
+      res.status(OK_STATUS).send(horse);
     })
     .catch((err) => {
-      res.status(500).send({
-        message: 'Internal server error',
-        err: err.message,
-        stack: err.stack,
-      });
+      errorHandler(err, next)
     });
 }
 
@@ -36,14 +30,10 @@ const getHorseById = (req, res) => {
 const createHorse = (req, res) => {
   horseModel.create(req.body)
     .then((horse) => {
-      res.status(201).send(horse);// 201 - создана лошадка
+      res.status(CREATED_STATUS).send(horse);// 201 - создана лошадка
     })
     .catch((err) => {
-      res.status(500).send({
-        message: 'Internal server error',
-        err: err.message,
-        stack: err.stack,
-      });
+      errorHandler(err, next)
     });
 }
 
@@ -51,14 +41,10 @@ const createHorse = (req, res) => {
 const deleteHorse = (req, res) => {
   horseModel.findByIdAndDelete(req.params.horse_id)
     .then((horse) => {
-      res.send(horse);
+      res.status(OK_STATUS).send(horse);
     })
     .catch((err) => {
-      res.status(500).send({
-        message: 'Internal server error',
-        err: err.message,
-        stack: err.stack,
-      });
+      errorHandler(err, next)
     });
 }
 
@@ -66,14 +52,10 @@ const deleteHorse = (req, res) => {
 const updateHorse = (req, res) => {
   horseModel.findByIdAndUpdate(req.params.horse_id, req.body, { new: true })
     .then((horse) => {
-      res.send(horse);
+      res.status(OK_STATUS).send(horse);
     })
     .catch((err) => {
-      res.status(500).send({
-        message: 'Internal server error',
-        err: err.message,
-        stack: err.stack,
-      });
+      errorHandler(err, next)
     });
 }
 
