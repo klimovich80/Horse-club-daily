@@ -27,7 +27,7 @@ const getHorseById = (req, res) => {
 }
 
 // создание лошадки в БД
-const createHorse = (req, res) => {
+const createHorse = (req, res, next) => {
   horseModel.create(req.body)
     .then((horse) => {
       res.status(CREATED_STATUS).send(horse);// 201 - создана лошадка
