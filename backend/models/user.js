@@ -1,11 +1,12 @@
 // подключаем монгус
 const { Schema, model } = require('mongoose');
 // подключаем проверку email и тп
-const { isEmail } = require('validator')
+const { isEmail, isMobilePhone, isUrl } = require('validator')
 // подключаем bcrypt для хэширования
 const bcrypt = require('bcrypt');
 // подключаем ошибку авторизации
-const UnauthorizedError = require('../errors/UnauthorizedError')
+const UnauthorizedError = require('../errors/UnauthorizedError');
+const { validate } = require('./record');
 
 // создаем модель пользователя
 const userSchema = new Schema({
@@ -39,9 +40,25 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: [true, 'Введите пароль для входа'],
+    minLength: [6, 'Поле должно содержать больше 6 символов, Вы ввели: {VALUE}'],
     select: false
+  },
+  phone: {
+    type: String,
+    unique: [true, 'Этот номер телефона уже есть в базе данных'],
+    validate: {
+      validator: (phone) => isMobilePhone(phone), // проверка на валидность телефона
+      message: 'Номер телефона должен состоять из 11 цифр' // сообщение об ошибке
+    }
+  },
+  photo: {
+    type: String,
+    validate: {
+      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
+    }
   }
-})
+}, { timestamps: true });
 
 // функция поиска пользователя по nickname и паролю
 userSchema.static.findUserByCredentials = function (nickname, password) {

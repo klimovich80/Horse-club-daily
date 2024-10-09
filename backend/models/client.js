@@ -6,23 +6,27 @@ const clientSchema = new Schema({
   //имя клиента
   firstName: {
     type: String,
-    required: true,
-    minLength: 2,
-    maxLength: 30,
+    required: [true, 'это поле обязательно для заполнения'],
+    minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
+    maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
   },
   //фамилия клиента
   lastName: {
     type: String,
     required: false,
-    minLength: 2,
-    maxLength: 30,
+    minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
+    maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
     default: 'неизвестно',
   },
   //телефон клиента, если неизвестно, то +79781234567
   phone: {
     type: String,
-    required: true,
-    default: '+79781234567',
+    required: [true, 'это поле обязательно для заполнения'],
+    validate: {
+      validator: (phone) => isMobilePhone(phone), // проверка на валидность телефона
+      message: 'Номер телефона должен состоять из 11 цифр' // сообщение об ошибке
+    },
+    default: '+79780000000',
   },
   //источник клиента, если неизвестно, то неизвестно
   source: {
@@ -33,78 +37,90 @@ const clientSchema = new Schema({
   age: {
     type: Number,
     required: false,
-    minLength: 1,
-    maxLength: 3,
+    minLength: [1, 'Поле должно содержать больше 0 символов, Вы ввели: {VALUE}'],
+    maxLength: [3, 'Поле должно содержать меньше 3 символов, Вы ввели: {VALUE}'],
     default: 0,
   },
   //дети клиента, если неизвестно, то false
   child: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // группа клиентов, если неизвестно, то false?
   group: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   //фото клиента, если неизвестно, то 'http://vk.com'
   avatar: {
     type: String,
     default: 'http://vk.com',
+    validate: {
+      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
+    }
   },
   //vk клиента, если неизвестно, 'http://vk.com'
   vk: {
     type: String,
     // unique: true,
     default: 'http://vk.com',
+    validate: {
+      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
+    }
   },
   // социальная сеть клиента, если неизвестно, 'http://vk.com'
   social: {
     type: String,
     default: 'http://vk.com',
+    validate: {
+      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
+    }
   },
   // продвинутый клиент, если неизвестно, false
   advanced: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // в первый разклиент, если неизвестно, false
   firstTime: {
     type: Boolean,
-    required: true,
+    rrequired: [true, 'это поле обязательно для заполнения'],
     default: true,
   },
   // умеет шагом? если неизвестно, false
   march: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: true,
   },
   // умееет рысью? если неизвестно, false
   trot: {
     type: Boolean,
-    required: true,
+    rrequired: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // умеет галопом? если неизвестно, false
   gallop: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // умеет прыгать? если неизвестно, false
   jump: {
     type: Boolean,
-    required: true,
+    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // описание клиента
   about: {
     type: String,
-    maxLength: 300,
+    maxLength: [300, 'Поле должно содержать меньше 300 символов'],
   },
 }, { timestamps: true });
 
