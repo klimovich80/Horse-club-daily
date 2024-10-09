@@ -37,9 +37,10 @@ const clientSchema = new Schema({
   age: {
     type: Number,
     required: false,
+    min: 1,
     minLength: [1, 'Поле должно содержать больше 0 символов, Вы ввели: {VALUE}'],
     maxLength: [3, 'Поле должно содержать меньше 3 символов, Вы ввели: {VALUE}'],
-    default: 0,
+    default: 1,
   },
   //дети клиента, если неизвестно, то false
   child: {

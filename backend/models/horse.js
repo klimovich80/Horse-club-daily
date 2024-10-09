@@ -49,12 +49,13 @@ const horseSchema = new Schema({
     type: Number,
     required: [true, 'Это поле обязательно для заполнения'],
     min: [1, 'Цена должна быть больше 0'],
-    minlength: [1, 'Цена должна быть больше 2 символов'],
+    minlength: [1, 'Цена должна быть больше 1 символов'],
     maxlength: [30, 'Цена должна быть меньше 30 символов'],
     validator: {
       validator: (price) => { isCurrency(price) }, // проверка цены лошади
       message: 'Цена должна быть в формате 123,45'   // сообщение об ошибке
-    }
+    },
+    default: '1'
   },
   // фото лошади
   image: {
@@ -62,7 +63,8 @@ const horseSchema = new Schema({
     validate: {
       validator: (url) => { isUrl(url) },
       message: 'URL должен быть в формате https://www.google.com'
-    }
+    },
+    default: 'https://www.google.com'
   }
 }, { timestamps: true });
 
