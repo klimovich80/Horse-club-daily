@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const { isUrl, isDate, isMobilePhone } = require('validator'); // проверка url
 
 // схема конюшни
-const stapleSchema = new mongoose.Schema({
+const stapleSchema = new Schema({
   openedOn: Date, // дата открытия
   name: String, // имя конюшни
   address: String, // адрес конюшни
@@ -13,4 +14,4 @@ const stapleSchema = new mongoose.Schema({
   closedOn: Boolean, // закрыто ли конюшня
 }, { timestamps: true });
 
-module.exports = mongoose.model('staple', stapleSchema);
+module.exports = model('staple', stapleSchema);

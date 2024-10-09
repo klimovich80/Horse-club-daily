@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const { isDate } = require('validator');
 
 //создаем модель для таблицы лошадей
-const horseSchema = new mongoose.Schema({
+const horseSchema = new Schema({
   // имя лошади
   name: String,
   // возраст лошади в годах
@@ -19,4 +20,4 @@ const horseSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // экспортируем модель
-module.exports = mongoose.model('horse', horseSchema);
+module.exports = model('horse', horseSchema);

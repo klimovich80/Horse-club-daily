@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const { isUrl, isDate, isMobilePhone } = require('validator'); // для проверки url на валидность
 
-const recordSchema = new mongoose.Schema({
+const recordSchema = new Schema({
   // дата прогулки
   date: {
     type: Date,
@@ -48,4 +49,4 @@ const recordSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('record', recordSchema);
+module.exports = model('record', recordSchema);

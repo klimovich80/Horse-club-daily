@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
+const { isUrl, isMobilePhone } = require('validator'); // проверка url на валидность
 
 // схема клиента
-const clientSchema = new mongoose.Schema({
+const clientSchema = new Schema({
   //имя клиента
   firstName: {
     type: String,
@@ -107,4 +108,4 @@ const clientSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('client', clientSchema);
+module.exports = model('client', clientSchema);
