@@ -6,7 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { PORT, dbCheck } = require('./config');
 const router = require('./routes');
-//const errorHandler = require('./middlewares/errorHandler');
+const errorHandler = require('./middlewares/errorHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./middlewares/limiter');
 const app = express();
@@ -27,6 +27,7 @@ app.use(requestLogger);
 app.use(router);
 app.use(errorLogger);
 app.use(errors());
+app.use(errorHandler);//подключаем обработчик ошибок
 
 app.listen(PORT, () => {
   console.log(`сервер слушает порт ${PORT}`);
