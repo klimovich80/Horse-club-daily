@@ -54,6 +54,12 @@ const updateUser = (req, res, next) => {
     .then((user) => res.status(OK_STATUS).send(user))
     .catch((error) => errorHandler(error, next));
 };
+//получает всех пользователей
+const getUsers = (req, res, next) => {
+  userModel.find({})
+    .then((users) => res.status(OK_STATUS).send(users))// отправляем пользователей
+    .catch((error) => errorHandler(error, next));
+}
 
 //получает информацию о пользователе
 const getUser = (req, res, next) => {
@@ -70,4 +76,11 @@ const deleteUser = (req, res, next) => {
 };
 
 //экспортируем модель
-module.exports = { login, createUser, updateUser, getUser, deleteUser };
+module.exports = {
+  login,
+  createUser,
+  updateUser,
+  getUsers,
+  getUser,
+  deleteUser
+};
