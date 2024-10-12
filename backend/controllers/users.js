@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');//npm install bcrypt
 const jwt = require('jsonwebtoken');//npm install jsonwebtoken
 const userModel = require('../models/user');
-const { errorHandler, OK_STATUS, CREATED_STATUS } = require('../config');
+const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 const { SALT_ROUNDS, jwtSecretCheck } = require('../config');
 
 // проверяет переданные в почту псевдоним и пароль
@@ -25,22 +25,23 @@ const login = (req, res, next) => {
 // создает пользователя с переданными в теле
 // пароль и псевдонимом
 const createUser = (req, res, next) => {
+  console.log(req.body);
   bcrypt.hash(req.body.password, SALT_ROUNDS) //хешируем пароль и сохраняем в базе
-    .then((hash) => {
+    .then((hash) =>
       userModel.create({
         ...req.body,
         nickname: req.body.nickname,
+        email: req.body.email,
         password: hash
-      })
-    })
+      }))
     .then((user) => {
+      console.log(`Пользователь ${user}`);
       res.status(CREATED_STATUS).send({
         nickname: user.nickname,
+        email: user.email,
       })
     })
-    .catch((error) => {
-      errorHandler(error, next);
-    })
+    .catch((error) => errorHandler(error, next))
 };
 
 // обновляем информацию о пользователе
@@ -55,11 +56,12 @@ const updateUser = (req, res, next) => {
     .catch((error) => errorHandler(error, next));
 };
 //получает всех пользователей
+
 const getUsers = (req, res, next) => {
   userModel.find({})
-    .then((users) => res.status(OK_STATUS).send(users))// отправляем пользователей
-    .catch((error) => errorHandler(error, next));
-}
+    .then((staples) => res.status(OK_STATUS).send(staples))
+    .catch((err) => errorHandler(err, next));
+};
 
 //получает информацию о пользователе
 const getUser = (req, res, next) => {
@@ -70,7 +72,7 @@ const getUser = (req, res, next) => {
 
 // удаляет пользователя
 const deleteUser = (req, res, next) => {
-  userModel.findByIdAndDelete(req.user_id)
+  userModel.findByIdAndDelete(req.params.user_id)
     .then(() => res.status(OK_STATUS).send())
     .catch((error) => errorHandler(error, next));
 };

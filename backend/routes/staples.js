@@ -19,3 +19,7 @@ router.delete('/:staple_id', deleteStaple);
 router.patch('/:staple_id', updateStaple);
 
 module.exports = router;
+
+
+//TODO:
+// подключить валидацию данных

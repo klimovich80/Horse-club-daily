@@ -19,6 +19,7 @@ const NOT_IMPLEMENTED_STATUS = 501;// Not Implemented
 const MONGO_DUPLICATE_KEY_ERROR = 11000;// Mongo duplicate key error
 
 const errorHandler = (err, next) => {
+  //console.log(`handling errors: ${err}`);
   console.log(err.code);
   console.log(err);
   if (err.code == MONGO_DUPLICATE_KEY_ERROR) {
