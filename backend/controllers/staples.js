@@ -1,4 +1,3 @@
-const { Error } = require('mongoose');// контроллер ошибок
 // контроллеры конюшен
 const stapleModel = require('../models/staple');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');

@@ -25,7 +25,6 @@ const login = (req, res, next) => {
 // создает пользователя с переданными в теле
 // пароль и псевдонимом
 const createUser = (req, res, next) => {
-  console.log(req.body);
   bcrypt.hash(req.body.password, SALT_ROUNDS) //хешируем пароль и сохраняем в базе
     .then((hash) =>
       userModel.create({

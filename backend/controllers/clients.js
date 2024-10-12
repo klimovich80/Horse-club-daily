@@ -1,4 +1,3 @@
-const { Error } = require('mongoose');// контроллер ошибок
 // контроллеры клиентов
 const clientModel = require('../models/client');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');

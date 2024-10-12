@@ -2,6 +2,8 @@ const router = require('express').Router();
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
 // подключаем маршруты для польователей
 const userRouter = require('./users');
+// подключаем маршруты для событий
+const eventRouter = require('./events');
 // подключаем маршруты для клиентов
 const clientRouter = require('./clients');
 //подключаем маршруты для лошадей
@@ -13,6 +15,8 @@ const stapleRouter = require('./staples');
 // используем маршруты
 // пользователи
 router.use('/users', userRouter);
+// события
+router.use('/events', eventRouter);
 // клиенты
 router.use('/clients', clientRouter);
 // лошади
