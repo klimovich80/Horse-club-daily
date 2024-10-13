@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-const { httpRegExp, emailRegExp } = require('../validation/validate')
+const { httpRegExp, emailRegExp } = require('../../validation/validate')
 //функции валидации
 
 //--пользователи--
