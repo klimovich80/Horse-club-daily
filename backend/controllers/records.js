@@ -11,6 +11,7 @@ const getRecords = (req, res, next) => {
 // получение записи по id
 const getRecordById = (req, res, next) => {
   recordModel.findById(req.params.record_id)
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((record) => res.status(OK_STATUS).send(record))
     .catch((err) => errorHandler(err, next));
 }

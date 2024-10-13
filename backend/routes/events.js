@@ -6,7 +6,7 @@ const {
   updateEvent,
   deleteEvent,
   getEvents,
-  getEvent
+  getEventById
 } = require('../controllers/events');
 //создать событие
 router.post('/', createEvent);
@@ -17,6 +17,6 @@ router.delete('/:event_id', deleteEvent);
 //получить все события
 router.get('/', getEvents);
 //получить событие
-router.get('/:event_id', getEvent);
+router.get('/:event_id', getEventById);
 
 module.exports = router;

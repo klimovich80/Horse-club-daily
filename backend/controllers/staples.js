@@ -12,6 +12,7 @@ const getStaples = (req, res, next) => {
 // получение конюшни по id из БД и отправка конюшни в ответе
 const getStapleById = (req, res, next) => {
   stapleModel.findById(req.params.staple_id)
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((staple) => res.status(OK_STATUS).send(staple))
     .catch((err) => errorHandler(err, next));
 };

@@ -26,8 +26,9 @@ const getEvents = (req, res, next) => {
     .catch(err => errorHandler(err, next));
 }
 //получение одного события по id
-const getEvent = (req, res, next) => {
+const getEventById = (req, res, next) => {
   eventModel.findById(req.params.event_id)
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((event) => res.status(OK_STATUS).send(event))
     .catch(err => errorHandler(err, next));
 }
@@ -37,5 +38,5 @@ module.exports = {
   updateEvent,
   deleteEvent,
   getEvents,
-  getEvent
+  getEventById
 }

@@ -63,8 +63,9 @@ const getUsers = (req, res, next) => {
 };
 
 //получает информацию о пользователе
-const getUser = (req, res, next) => {
+const getUserById = (req, res, next) => {
   userModel.findById(req.user_id) //получаем данные о пользователе
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((user) => res.status(OK_STATUS).send(user))
     .catch((error) => errorHandler(error, next));
 };
@@ -82,6 +83,6 @@ module.exports = {
   createUser,
   updateUser,
   getUsers,
-  getUser,
+  getUserById,
   deleteUser
 };

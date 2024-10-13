@@ -14,6 +14,7 @@ const getHorses = (req, res, next) => {
 // получение лошадки по id
 const getHorseById = (req, res, next) => {
   horseModel.findById(req.params.horse_id)
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((horse) => res.status(OK_STATUS).send(horse))
     .catch((err) => errorHandler(err, next));
 }

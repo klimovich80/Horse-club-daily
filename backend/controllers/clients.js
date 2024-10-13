@@ -12,6 +12,7 @@ const getClients = (req, res, next) => {
 // получение клиента по id из БД и отправка клиента в ответе
 const getClientById = (req, res, next) => {
   clientModel.findById(req.params.client_id)
+    .orFail(() => { throw new Error.DocumentNotFoundError(); })
     .then((client) => res.status(OK_STATUS).send(client))
     .catch((err) => errorHandler(err, next));
 };
