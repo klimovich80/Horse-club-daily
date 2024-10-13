@@ -7,15 +7,22 @@ const {
   deleteClient,
   updateClient
 } = require('../controllers/clients');
+
+const {
+  validateClientById,
+  validateClientAdd,
+  validateClientUpdate,
+} = require('../middlewares/validation/client');
+
 // получить всех клиентов
 router.get('/', getClients);
 // получить клиента по id
-router.get('/:client_id', getClientById);
+router.get('/:client_id', validateClientById, getClientById);
 // создать клиента
-router.post('/', createClient);
+router.post('/', validateClientAdd, createClient);
 // удалить клиента
 router.delete('/:client_id', deleteClient);
 //обновить клиента
-router.patch('/:client_id', updateClient);
+router.patch('/:client_id', validateClientUpdate, updateClient);
 
 module.exports = router;
