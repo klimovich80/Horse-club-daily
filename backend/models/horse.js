@@ -70,3 +70,5 @@ const horseSchema = new Schema({
 
 // экспортируем модель
 module.exports = model('horse', horseSchema);
+
+//TODO создать поля: прививки, глистогонки, номер чипа, телефон владельца, комментарии

@@ -79,3 +79,5 @@ userSchema.static.findUserByCredentials = function (nickname, password) {
 }
 
 module.exports = model('user', userSchema)
+
+//TODO создать поле с сылкой на соцсети

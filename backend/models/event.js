@@ -11,3 +11,5 @@ const eventSchema = new Schema({
 })
 
 module.exports = model('event', eventSchema)
+
+//TODO создать поле с фото, длительностью и сложностью маршрута

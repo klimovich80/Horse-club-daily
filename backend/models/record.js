@@ -89,3 +89,5 @@ const recordSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = model('record', recordSchema);
+
+//TODO создать поле "количество инструкторов в наличии"

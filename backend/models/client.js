@@ -34,6 +34,8 @@ const clientSchema = new Schema({
     default: 'неизвестно',
   },
   //возраст клиента
+  //TODO переделать под дату рождения
+  //TODO если клиент ребенок - добавить родителей как клиентов и ссылки на них в профиле клиента
   age: {
     type: Number,
     required: false,
@@ -43,12 +45,13 @@ const clientSchema = new Schema({
     default: 1,
   },
   //дети клиента, если неизвестно, то false
+  //TODO если дети есть - указать количество
   child: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
-  // группа клиентов, если неизвестно, то false?
+  // группа клиентов, если неизвестно, то false?(не понятно нужно ли это поле)
   group: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],
@@ -126,3 +129,5 @@ const clientSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = model('client', clientSchema);
+
+//TODO создать поле заполнения журнала безопасности
