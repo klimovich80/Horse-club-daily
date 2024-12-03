@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isUrl, isMobilePhone, isDate } = require('validator'); // проверка url на валидность
+const { isURL, isMobilePhone, isDate } = require('validator'); // проверка url на валидность
 
 // схема клиента
 const clientSchema = new Schema({
@@ -74,7 +74,7 @@ const clientSchema = new Schema({
     type: String,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
@@ -84,7 +84,7 @@ const clientSchema = new Schema({
     // unique: true,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
@@ -93,7 +93,7 @@ const clientSchema = new Schema({
     type: String,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },

@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { isURL } = require('validator');
 //модель создана для описания типов событий типа "прогулка"/"занятие"/"поход"
 const eventSchema = new Schema({
   name: {
@@ -11,7 +12,7 @@ const eventSchema = new Schema({
   image: {
     type: String,
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'

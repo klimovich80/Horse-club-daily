@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isUrl, isDate, isMobilePhone, isTime } = require('validator'); // для проверки url на валидность
+const { isURL, isDate, isMobilePhone, isTime } = require('validator'); // для проверки url на валидность
 
 const recordSchema = new Schema({
   // дата прогулки
@@ -76,7 +76,7 @@ const recordSchema = new Schema({
   socialNetwork: {
     type: String,
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     },
     default: 'https://www.google.com'

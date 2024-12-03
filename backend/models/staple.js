@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isUrl, isDate, isMobilePhone } = require('validator');
+const { isURL, isDate, isMobilePhone } = require('validator');
 // схема конюшни
 const stapleSchema = new Schema({
   openedOn: {
@@ -26,7 +26,7 @@ const stapleSchema = new Schema({
     type: String,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'
@@ -35,7 +35,7 @@ const stapleSchema = new Schema({
     type: String,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'
@@ -44,7 +44,7 @@ const stapleSchema = new Schema({
     type: String,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'

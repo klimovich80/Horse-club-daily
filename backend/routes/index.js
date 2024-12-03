@@ -12,6 +12,13 @@ const horseRouter = require('./horses');
 const recordRouter = require('./records');
 // подключаем маршруты для конюшен
 const stapleRouter = require('./staples');
+// подключаем маршруты для инструкторов
+const instructorRouter = require('./instructors');
+// подключаем маршруты для маршрутов
+const trailRouter = require('./trails');
+// подключаем маршруты для источников лида
+const leadSourceRouter = require('./lead-sources');
+
 // используем маршруты
 // пользователи
 router.use('/users', userRouter);
@@ -25,6 +32,13 @@ router.use('/horses', horseRouter);
 router.use('/records', recordRouter);
 // конюшен
 router.use('/staples', stapleRouter);
+// инструкторы
+router.use('/instructors', instructorRouter);
+// маршруты
+router.use('/trails', trailRouter);
+// источники лида
+router.use('/lead-sources', leadSourceRouter);
+
 // документ не найден
 router.use(() => {
   throw new DocumentNotFoundError('Страница по указанному адресу не найдена(')

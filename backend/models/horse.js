@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isDate, isCurrency, isMobilePhone } = require('validator');
+const { isDate, isURL, isCurrency, isMobilePhone } = require('validator');
 
 //создаем модель для таблицы лошадей
 const horseSchema = new Schema({
@@ -69,7 +69,7 @@ const horseSchema = new Schema({
   image: {
     type: String,
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'

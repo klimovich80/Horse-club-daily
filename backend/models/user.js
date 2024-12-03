@@ -1,7 +1,7 @@
 // подключаем монгус
 const { Schema, model } = require('mongoose');
 // подключаем проверку email и тп
-const { isEmail, isMobilePhone, isUrl } = require('validator')
+const { isEmail, isMobilePhone, isURL } = require('validator')
 // подключаем bcrypt для хэширования
 const bcrypt = require('bcrypt');
 // подключаем ошибку авторизации
@@ -53,7 +53,7 @@ const userSchema = new Schema({
   photo: {
     type: String,
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
@@ -61,7 +61,7 @@ const userSchema = new Schema({
     type: String,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     validate: {
-      validator: (url) => { isUrl(url) },
+      validator: (url) => { isURL(url) },
       message: 'URL должен быть в формате https://www.google.com'
     },
     default: 'https://www.google.com'

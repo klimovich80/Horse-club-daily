@@ -1,6 +1,6 @@
-//TODO создать схему описания(информации) маршрута
+
 const { Schema, model } = require('mongoose');
-const { isDate, isCurrency, isMobilePhone } = require('validator');
+const { isDate, isURL, isMobilePhone } = require('validator');
 
 const instructorSchema = new Schema({
   //имя клиента
@@ -55,7 +55,7 @@ const instructorSchema = new Schema({
     type: String,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
@@ -65,7 +65,7 @@ const instructorSchema = new Schema({
     // unique: true,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
@@ -74,7 +74,7 @@ const instructorSchema = new Schema({
     type: String,
     default: 'http://vk.com',
     validate: {
-      validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
+      validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
