@@ -67,7 +67,18 @@ const stapleSchema = new Schema({
   closed: {
     type: Boolean,
     default: false
-  }, // закрыто ли конюшня
+  }, // закрыта ли конюшня?(возможна отмена поля)
+  email: {
+    type: String,
+    required: [true, 'это поле обязательно для заполнения, введите email mail@mail.ru'],
+    minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
+    unique: [true, 'этот email {VALUE} уже есть в базе данных'],
+    validate: {
+      validator: (email) => isEmail(email), // проверка на валидность email
+      message: 'Email должен быть в формате me@mail.any' // сообщение об ошибке
+    }
+  },
+
 }, { timestamps: true });
 
 module.exports = model('staple', stapleSchema);

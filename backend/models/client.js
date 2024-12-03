@@ -121,6 +121,12 @@ const clientSchema = new Schema({
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
+  //заполнил ли журнал безопасности
+  safety: {
+    type: Boolean,
+    required: [true, 'это поле обязательно для заполнения'],
+    default: false,
+  },
   // описание клиента
   about: {
     type: String,
@@ -129,5 +135,3 @@ const clientSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = model('client', clientSchema);
-
-//TODO создать поле заполнения журнала безопасности

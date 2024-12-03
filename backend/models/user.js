@@ -57,7 +57,16 @@ const userSchema = new Schema({
       validator: (url) => isUrl(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
-  }
+  },
+  social: {
+    type: String,
+    minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
+    validate: {
+      validator: (url) => { isUrl(url) },
+      message: 'URL должен быть в формате https://www.google.com'
+    },
+    default: 'https://www.google.com'
+  }, // социальные сети
 }, { timestamps: true });
 
 // функция поиска пользователя по nickname и паролю
@@ -79,5 +88,3 @@ userSchema.static.findUserByCredentials = function (nickname, password) {
 }
 
 module.exports = model('user', userSchema)
-
-//TODO создать поле с сылкой на соцсети
