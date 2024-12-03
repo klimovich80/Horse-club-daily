@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isUrl, isMobilePhone } = require('validator'); // проверка url на валидность
+const { isUrl, isMobilePhone, isDate } = require('validator'); // проверка url на валидность
 
 // схема клиента
 const clientSchema = new Schema({
@@ -33,23 +33,35 @@ const clientSchema = new Schema({
     type: String,
     default: 'неизвестно',
   },
-  //возраст клиента
-  //TODO переделать под дату рождения
-  //TODO если клиент ребенок - добавить родителей как клиентов и ссылки на них в профиле клиента
-  age: {
+  // дата рождения
+  dateOfBirth: {
+    type: [Date, String],
+    required: [true, 'Это поле обязательно для заполнения'],
+    minlength: [2, 'Дата должна быть больше 2 символов'],
+    maxlength: [10, 'Дата должна быть меньше 10 символов'],
+    validate: {
+      validator: (dateOfBirth) => { isDate(dateOfBirth) }, // проверка даты
+      message: 'Дата должна быть в формате YYYY-MM-DD'   // сообщение об ошибке
+    }
+  },
+  // телефон для связи с родителями
+  parentNumber: {
     type: Number,
-    required: false,
-    min: 1,
-    minLength: [1, 'Поле должно содержать больше 0 символов, Вы ввели: {VALUE}'],
-    maxLength: [3, 'Поле должно содержать меньше 3 символов, Вы ввели: {VALUE}'],
-    default: 1,
+    validate: {
+      validator: (phoneNumber) => isMobilePhone(phoneNumber),
+      message: 'Номер телефона должен состоять из 11 цифр'
+    }
   },
   //дети клиента, если неизвестно, то false
-  //TODO если дети есть - указать количество
   child: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
+  },
+  // количество детей
+  childNumber: {
+    type: Number,
+    default: 0
   },
   // группа клиентов, если неизвестно, то false?(не понятно нужно ли это поле)
   group: {

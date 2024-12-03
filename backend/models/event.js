@@ -51,5 +51,3 @@ const eventSchema = new Schema({
 })
 
 module.exports = model('event', eventSchema)
-
-//TODO создать и сложностью маршрута

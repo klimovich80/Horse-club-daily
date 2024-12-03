@@ -6,7 +6,6 @@ const { isEmail, isMobilePhone, isUrl } = require('validator')
 const bcrypt = require('bcrypt');
 // подключаем ошибку авторизации
 const UnauthorizedError = require('../errors/UnauthorizedError');
-const { validate } = require('./record');
 
 // создаем модель пользователя
 const userSchema = new Schema({

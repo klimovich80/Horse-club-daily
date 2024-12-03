@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { isUrl, isDate, isMobilePhone } = require('validator'); // проверка url
-const { validate } = require('./record');
+const { isUrl, isDate, isMobilePhone } = require('validator');
 // схема конюшни
 const stapleSchema = new Schema({
   openedOn: {
@@ -83,4 +82,4 @@ const stapleSchema = new Schema({
 
 module.exports = model('staple', stapleSchema);
 
-//TODO создать поле электронной почты
+//TODO создать поле графика работы
