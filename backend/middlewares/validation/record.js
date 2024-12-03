@@ -19,3 +19,5 @@ module.exports = {
   validateRecordAdd,
   validateRecordUpdate,
 }
+
+// TODO: сделать подробную проверку на валидацию

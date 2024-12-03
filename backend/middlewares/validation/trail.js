@@ -19,3 +19,5 @@ module.exports = {
   validateTrailAdd,
   validateTrailUpdate
 }
+
+// TODO: сделать подробную проверку на валидацию

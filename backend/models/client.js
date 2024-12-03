@@ -147,3 +147,11 @@ const clientSchema = new Schema({
 }, { timestamps: true });
 
 module.exports = model('client', clientSchema);
+
+// TODO возможно использовать
+// const childSchema = new Schema({ name: String })
+
+//const parentSchema = new Schema({
+//  // массив субдокументов
+//  children: [childSchema]
+// })

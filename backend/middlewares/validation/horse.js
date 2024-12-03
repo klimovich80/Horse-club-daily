@@ -19,3 +19,5 @@ module.exports = {
   validateHorseAdd,
   validateHorseUpdate
 }
+
+// TODO: сделать подробную проверку на валидацию

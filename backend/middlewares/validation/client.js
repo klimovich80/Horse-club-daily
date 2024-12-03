@@ -19,3 +19,5 @@ module.exports = {
   validateClientAdd,
   validateClientUpdate
 }
+
+// TODO: сделать подробную проверку на валидацию

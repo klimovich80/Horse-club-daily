@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const { isURL, isDate, isMobilePhone } = require('validator');
+const daySchema = require('./day');
 // схема конюшни
 const stapleSchema = new Schema({
   openedOn: {
@@ -77,9 +78,19 @@ const stapleSchema = new Schema({
       message: 'Email должен быть в формате me@mail.any' // сообщение об ошибке
     }
   },
+  // график работы
+  days: [{
+    monday: { type: daySchema },
+    tuesday: { type: daySchema },
+    wednesday: { type: daySchema },
+    thursday: { type: daySchema },
+    friday: { type: daySchema },
+    saturday: { type: daySchema },
+    sunday: { type: daySchema }
+  }]
 
 }, { timestamps: true });
 
 module.exports = model('staple', stapleSchema);
 
-//TODO создать поле графика работы
+//TODO проверить схему на Postman

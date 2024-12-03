@@ -19,3 +19,5 @@ module.exports = {
   validateLeadSourceAdd,
   validateLeadSourceUpdate
 }
+
+// TODO: сделать подробную проверку на валидацию

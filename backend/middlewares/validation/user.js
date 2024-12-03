@@ -24,3 +24,5 @@ module.exports = {
   validateUserUpdate,
   validateUserById
 }
+
+// TODO: сделать подробную проверку на валидацию

@@ -19,3 +19,5 @@ module.exports = {
   validateInstructorAdd,
   validateInstructorUpdate
 }
+
+// TODO: сделать подробную проверку на валидацию

@@ -19,3 +19,5 @@ module.exports = {
   validateStapleAdd,
   validateStapleUpdate,
 }
+
+// TODO: сделать подробную проверку на валидацию

@@ -20,3 +20,5 @@ module.exports = {
   validateEventAdd,
   validateEventUpdate,
 }
+
+// TODO: сделать подробную проверку на валидацию
