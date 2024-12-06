@@ -1,5 +1,6 @@
 // контроллеры конюшен
 const stapleModel = require('../models/staple');
+const { Error } = require('mongoose');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 
 // получение всех конюшен из БД и отправка конюшен в ответе
@@ -45,3 +46,5 @@ module.exports = {
   deleteStaple,
   updateStaple
 };
+
+// TODO: починить ошибку 404 15:27 (починена подключением Error от mongoose)
