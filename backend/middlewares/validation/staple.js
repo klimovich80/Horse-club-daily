@@ -1,5 +1,9 @@
 const { celebrate, Joi } = require('celebrate');
-const { httpRegExp, emailRegExp } = require('../../validation/validate')
+const {
+  httpRegExp,
+  emailRegExp,
+  phoneNumberRegExp
+} = require('../../validation/validate')
 //функции валидации
 
 //--конюшни--
@@ -10,7 +14,21 @@ const validateStapleById = celebrate({
   }),
 });
 //добавление конюшни
-const validateStapleAdd = celebrate({ body: Joi.object().keys({}) });
+const validateStapleAdd = celebrate({
+  body: Joi.object().keys({
+    openedOn: Joi.date(),
+    name: Joi.string().min(2).max(200).required(),
+    address: Joi.string().min(2).max(200).required(),
+    image: Joi.string().min(2).max(200).pattern(httpRegExp),
+    website: Joi.string().min(2).max(200).pattern(httpRegExp),
+    social: Joi.string().min(2).max(200).pattern(httpRegExp),
+    phone: Joi.string().length(10).pattern(phoneNumberRegExp),
+    comments: Joi.string().min(2).max(200),
+    closed: Joi.boolean(),
+    email: Joi.string().pattern(emailRegExp),
+    days: Joi.string().length(10)
+  })
+});
 //обновление данных конюшни
 const validateStapleUpdate = celebrate({ body: Joi.object().keys({}) });
 

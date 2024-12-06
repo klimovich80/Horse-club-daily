@@ -1,6 +1,21 @@
 const { Schema, model } = require('mongoose');
-const { isURL, isDate, isMobilePhone } = require('validator');
-const daySchema = require('./day');
+const { isURL, isDate, isMobilePhone, isEmail } = require('validator');
+
+const daySchema = new Schema({
+  dayOff: {
+    type: Boolean,
+    default: false
+  },
+  startTime: {
+    type: Number,
+    default: 8
+  },
+  endTime: {
+    type: Number,
+    default: 17
+  }
+});
+
 // схема конюшни
 const stapleSchema = new Schema({
   openedOn: {
@@ -70,7 +85,6 @@ const stapleSchema = new Schema({
   }, // закрыта ли конюшня?(возможна отмена поля)
   email: {
     type: String,
-    required: [true, 'это поле обязательно для заполнения, введите email mail@mail.ru'],
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     unique: [true, 'этот email {VALUE} уже есть в базе данных'],
     validate: {
@@ -79,17 +93,21 @@ const stapleSchema = new Schema({
     }
   },
   // график работы
-  days: [{
-    monday: { type: daySchema },
-    tuesday: { type: daySchema },
-    wednesday: { type: daySchema },
-    thursday: { type: daySchema },
-    friday: { type: daySchema },
-    saturday: { type: daySchema },
-    sunday: { type: daySchema }
-  }]
-
+  days: {
+    type: [daySchema],
+    default: [
+      { weekDay: 'Понедельник' },
+      { weekDay: 'Вторник' },
+      { weekDay: 'Среда' },
+      { weekDay: 'Четверг' },
+      { weekDay: 'Пятница' },
+      { weekDay: 'Суббота' },
+      { weekDay: 'Воскресенье' }
+    ]
+  }
 }, { timestamps: true });
+
+stapleSchema.save
 
 module.exports = model('staple', stapleSchema);
 
