@@ -17,8 +17,8 @@ const jwtSecretCheck = () => {
 };
 
 const dbCheck = () => {
+  // можно ли заменить на ?
   const db = 'mongodb://localhost:27017/perevalDB';
-
   if (!NODE_ENV) {
     return db;
   }
