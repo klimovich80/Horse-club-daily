@@ -20,32 +20,28 @@ const eventSchema = new Schema({
   //  длительность события
   price: {
     type: Number,
-    min: [1, 'Цена должна быть больше 0'],
     minlength: [1, 'Цена должна быть больше 1 символов'],
-    maxlength: [30, 'Цена должна быть меньше 30 символов']
+    maxlength: [30, 'Цена должна быть меньше 30 символов'],
+    default: 0,
   },
   // шаг
   march: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: true,
   },
   // рысь
   trot: {
     type: Boolean,
-    rrequired: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // галоп
   gallop: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // конкур
   jump: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   comments: { String }

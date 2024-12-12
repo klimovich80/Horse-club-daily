@@ -10,16 +10,15 @@ const {
 
 const {
   validateEventById,
-  validateEventAdd,
-  validateEventUpdate
+  validateEventData
 } = require('../middlewares/validation/event');
 
 //создать событие
-router.post('/', validateEventAdd, createEvent);
+router.post('/', validateEventData, createEvent);
 //обновить событие
-router.patch('/:event_id', validateEventUpdate, updateEvent);
+router.patch('/:event_id', validateEventData, updateEvent);
 //удалить событие
-router.delete('/:event_id', deleteEvent);
+router.delete('/:event_id', validateEventById, deleteEvent);
 //получить все события
 router.get('/', getEvents);
 //получить событие

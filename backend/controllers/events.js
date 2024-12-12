@@ -1,5 +1,6 @@
 //контроллер событий
 const eventModel = require('../models/event');
+const { Error } = require('mongoose');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 //создание события
 const createEvent = async (req, res, next) => {
@@ -10,7 +11,7 @@ const createEvent = async (req, res, next) => {
 //обновление события
 const updateEvent = (req, res, next) => {
   eventModel.findByIdAndUpdate(req.params.event_id, req.body, { new: true }) //получение одного события по id
-    .then(event => res.status(CREATED_STATUS_STATUS).send(event))
+    .then(event => res.status(CREATED_STATUS).send(event))
     .catch(err => errorHandler(err, next));
 }
 //удаление события
