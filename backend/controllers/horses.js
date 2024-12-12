@@ -1,6 +1,7 @@
 //контроллеры лошадок
 const horseModel = require('../models/horse');
 // контроллеры ошибок
+const { Error } = require('mongoose');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 
 // получение всех лошадок из БД и отправка клиентов в ответе

@@ -126,7 +126,6 @@ const clientSchema = new Schema({
   // фамилия клиента
   lastName: {
     type: String,
-    required: false,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
     default: 'неизвестно',
@@ -174,7 +173,6 @@ const clientSchema = new Schema({
   // дети клиента, если неизвестно, то false
   childBool: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // количество детей
@@ -187,7 +185,6 @@ const clientSchema = new Schema({
   // группа клиентов, если неизвестно, то false?(не понятно нужно ли это поле)
   group: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // фото клиента, если неизвестно, то 'http://vk.com'
@@ -229,49 +226,41 @@ const clientSchema = new Schema({
   // пол клиента
   sex: {
     type: Boolean,
-    required: [true, 'нужно указать пол'],
     default: true,
   },
   // продвинутый клиент, если неизвестно, false
   advanced: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // в первый разклиент, если неизвестно, false
   firstTime: {
     type: Boolean,
-    rrequired: [true, 'это поле обязательно для заполнения'],
     default: true,
   },
   // умеет шагом? если неизвестно, false
   march: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: true,
   },
   // умееет рысью? если неизвестно, false
   trot: {
     type: Boolean,
-    rrequired: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // умеет галопом? если неизвестно, false
   gallop: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // умеет прыгать? если неизвестно, false
   jump: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // заполнил ли журнал безопасности
   safety: {
     type: Boolean,
-    required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // описание клиента

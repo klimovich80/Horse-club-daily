@@ -1,23 +1,36 @@
 const { celebrate, Joi } = require('celebrate');
-const { httpRegExp, emailRegExp } = require('../../validation/validate')
+const { httpRegExp, chipNumberRegExp } = require('../../validation/validate')
 //функции валидации
 
 //--лошади--
 //получение лошади по id
 const validateHorseById = celebrate({
   params: Joi.object().keys({
-    horseId: Joi.string().hex().length(24),
+    horse_id: Joi.string().hex().length(24),
   }),
 });
-//добавление лошади
-const validateHorseAdd = celebrate({ body: Joi.object().keys({}) });
-//обновление данных лошади
-const validateHorseUpdate = celebrate({ body: Joi.object().keys({}) });
+//данные лошади
+const validateHorseData = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(50),
+    dateOfBirth: Joi.date(),
+    color: Joi.string(),
+    breed: Joi.string(),
+    height: Joi.number(),
+    weight: Joi.number(),
+    owner: Joi.string(),
+    price: Joi.number(),
+    image: Joi.string().regex(httpRegExp),
+    dateOfLastVaccination: Joi.date(),
+    dateOfLastAnthelmintic: Joi.date(),
+    rfId: Joi.string().regex(chipNumberRegExp),
+    comments: Joi.string(),
+  })
+});
 
 module.exports = {
   validateHorseById,
-  validateHorseAdd,
-  validateHorseUpdate
+  validateHorseData
 }
 
 // TODO: сделать подробную проверку на валидацию

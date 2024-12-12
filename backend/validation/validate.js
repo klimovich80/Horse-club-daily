@@ -4,5 +4,13 @@ const httpRegExp = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|1
 const emailRegExp = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/im;
 // выражение для проверки номера телефона в России
 const phoneNumberRegExp = /^(\+7)|8[0-9]{10}$/;
+// выражение для проверки номера чипа лошади из 15 цифр
+const chipNumberRegExp = /^[0-9]{15}$/;
 
-module.exports = { httpRegExp, emailRegExp, phoneNumberRegExp };
+
+module.exports = {
+  httpRegExp,
+  emailRegExp,
+  phoneNumberRegExp,
+  chipNumberRegExp
+};

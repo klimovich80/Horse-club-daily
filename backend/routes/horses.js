@@ -10,8 +10,7 @@ const {
 
 const {
   validateHorseById,
-  validateHorseAdd,
-  validateHorseUpdate
+  validateHorseData
 } = require('../middlewares/validation/horse')
 
 //получение всех лошадей с сервера
@@ -21,12 +20,12 @@ router.get('/', getHorses);
 router.get('/:horse_id', validateHorseById, getHorseById);
 
 //создание лошади
-router.post('/', validateHorseAdd, createHorse);
+router.post('/', validateHorseData, createHorse);
 
 //удаление лошади
-router.delete('/:horse_id', deleteHorse);
+router.delete('/:horse_id', validateHorseById, deleteHorse);
 
 //обновление лошади
-router.patch('/:horse_id', validateHorseUpdate, updateHorse);
+router.patch('/:horse_id', validateHorseData, updateHorse);
 
 module.exports = router;
