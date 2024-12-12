@@ -1,5 +1,6 @@
 // контроллеры клиентов
 const clientModel = require('../models/client');
+const { Error } = require('mongoose');
 const { errorHandler, OK_STATUS, CREATED_STATUS } = require('./errors');
 
 // получение всех клиентов из БД и отправка клиентов в ответе
@@ -26,6 +27,8 @@ const createClient = (req, res, next) => {
 
 // удаление клиента из БД и отправка клиента в ответе
 const deleteClient = (req, res, next) => {
+  console.log('req.params', req.params);
+
   clientModel.findByIdAndDelete(req.params.client_id)
     .then((client) => res.status(OK_STATUS).send(client))
     .catch((err) => errorHandler(err, next));

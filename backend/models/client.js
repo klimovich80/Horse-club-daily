@@ -28,7 +28,7 @@ const childSchema = new Schema({
   },
   // дата рождения
   dateOfBirth: {
-    type: [Date, String],
+    type: Date,
     required: [true, 'Это поле обязательно для заполнения'],
     minlength: [2, 'Дата должна быть больше 2 символов'],
     maxlength: [10, 'Дата должна быть меньше 10 символов'],
@@ -154,7 +154,7 @@ const clientSchema = new Schema({
   },
   // дата рождения
   dateOfBirth: {
-    type: [Date, String],
+    type: Date,
     required: [true, 'Это поле обязательно для заполнения'],
     minlength: [2, 'Дата должна быть больше 2 символов'],
     maxlength: [10, 'Дата должна быть меньше 10 символов'],

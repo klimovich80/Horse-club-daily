@@ -10,8 +10,7 @@ const {
 
 const {
   validateClientById,
-  validateClientAdd,
-  validateClientUpdate,
+  validateClientData
 } = require('../middlewares/validation/client');
 
 // получить всех клиентов
@@ -19,10 +18,10 @@ router.get('/', getClients);
 // получить клиента по id
 router.get('/:client_id', validateClientById, getClientById);
 // создать клиента
-router.post('/', validateClientAdd, createClient);
+router.post('/', validateClientData, createClient);
 // удалить клиента
-router.delete('/:client_id', deleteClient);
+router.delete('/:client_id', validateClientById, deleteClient);
 //обновить клиента
-router.patch('/:client_id', validateClientUpdate, updateClient);
+router.patch('/:client_id', validateClientData, updateClient);
 
 module.exports = router;

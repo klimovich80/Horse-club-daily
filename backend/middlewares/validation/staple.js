@@ -13,8 +13,8 @@ const validateStapleById = celebrate({
     staple_id: Joi.string().hex().length(24),
   }),
 });
-//добавление конюшни
-const validateStapleAdd = celebrate({
+//данные конюшни
+const validateStapleData = celebrate({
   body: Joi.object().keys({
     openedOn: Joi.date(),
     name: Joi.string().min(2).max(200).required(),
@@ -29,29 +29,11 @@ const validateStapleAdd = celebrate({
     days: Joi.string().length(10)
   })
 });
-//обновление данных конюшни
-const validateStapleUpdate = celebrate({
-  body: Joi.object().keys({
-    openedOn: Joi.date(),
-    name: Joi.string().min(2).max(200).required(),
-    address: Joi.string().min(2).max(200).required(),
-    image: Joi.string().min(2).max(200).pattern(httpRegExp),
-    website: Joi.string().min(2).max(200).pattern(httpRegExp),
-    social: Joi.string().min(2).max(200).pattern(httpRegExp),
-    phone: Joi.string().length(10).pattern(phoneNumberRegExp),
-    comments: Joi.string().min(2).max(200),
-    closed: Joi.boolean(),
-    email: Joi.string().pattern(emailRegExp),
-    days: Joi.string().length(10),
-  })
-});
 
 module.exports = {
   validateStapleById,
-  validateStapleAdd,
-  validateStapleUpdate,
+  validateStapleData
 }
 
 // TODO: сделать подробную проверку на валидацию
 // TODO написать тесты для полей ввода
-// TODO написать валидацию айди для удаления записи?

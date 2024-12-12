@@ -10,8 +10,7 @@ const {
 
 const {
   validateStapleById,
-  validateStapleAdd,
-  validateStapleUpdate
+  validateStapleData
 } = require('../middlewares/validation/staple')
 
 // получить всех клиентов
@@ -19,10 +18,10 @@ router.get('/', getStaples);
 // получить клиента по id
 router.get('/:staple_id', validateStapleById, getStapleById);
 // создать клиента
-router.post('/', validateStapleAdd, createStaple);
+router.post('/', validateStapleData, createStaple);
 // удалить клиента
-router.delete('/:staple_id', deleteStaple);
+router.delete('/:staple_id', validateStapleById, deleteStaple);
 //обновить клиента
-router.patch('/:staple_id', validateStapleUpdate, updateStaple);
+router.patch('/:staple_id', validateStapleData, updateStaple);
 
 module.exports = router;
