@@ -8,10 +8,12 @@ const daySchema = new Schema({
   },
   startTime: {
     type: Number,
+
     default: 8
   },
   endTime: {
     type: Number,
+
     default: 17
   }
 });

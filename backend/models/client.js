@@ -1,23 +1,22 @@
 const { Schema, model } = require('mongoose');
-const { isURL, isMobilePhone, isDate } = require('validator'); // проверка url на валидность
+const { isURL, isMobilePhone, isDate, isEmail } = require('validator'); // проверка url на валидность
 // схема ребенка клиента
 const childSchema = new Schema({
-  //имя клиента
+  // имя клиента
   firstName: {
     type: String,
     required: [true, 'это поле обязательно для заполнения'],
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
   },
-  //фамилия клиента
+  // фамилия клиента
   lastName: {
     type: String,
-    required: false,
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
     default: 'неизвестно',
   },
-  //телефон клиента, если неизвестно, то +79781234567
+  // телефон клиента, если неизвестно, то +79781234567
   phone: {
     type: String,
     required: [true, 'это поле обязательно для заполнения'],
@@ -26,11 +25,6 @@ const childSchema = new Schema({
       message: 'Номер телефона должен состоять из 11 цифр' // сообщение об ошибке
     },
     default: '+79780000000',
-  },
-  //источник клиента, если неизвестно, то неизвестно
-  source: {
-    type: String,
-    default: 'неизвестно',
   },
   // дата рождения
   dateOfBirth: {
@@ -43,7 +37,7 @@ const childSchema = new Schema({
       message: 'Дата должна быть в формате YYYY-MM-DD'   // сообщение об ошибке
     }
   },
-  //фото клиента, если неизвестно, то 'http://vk.com'
+  // фото клиента, если неизвестно, то 'http://vk.com'
   avatar: {
     type: String,
     default: 'http://vk.com',
@@ -52,7 +46,7 @@ const childSchema = new Schema({
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
-  //vk клиента, если неизвестно, 'http://vk.com'
+  // vk клиента, если неизвестно, 'http://vk.com'
   vk: {
     type: String,
     // unique: true,
@@ -107,7 +101,7 @@ const childSchema = new Schema({
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
-  //заполнил ли журнал безопасности
+  // заполнил ли журнал безопасности
   safety: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],
@@ -122,14 +116,14 @@ const childSchema = new Schema({
 
 // схема клиента
 const clientSchema = new Schema({
-  //имя клиента
+  // имя клиента
   firstName: {
     type: String,
     required: [true, 'это поле обязательно для заполнения'],
     minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
     maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
   },
-  //фамилия клиента
+  // фамилия клиента
   lastName: {
     type: String,
     required: false,
@@ -137,7 +131,13 @@ const clientSchema = new Schema({
     maxLength: [30, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
     default: 'неизвестно',
   },
-  //телефон клиента, если неизвестно, то +79781234567
+  // адрес клиента
+  address: {
+    type: String,
+    minLength: [2, 'Поле должно содержать больше 2 символов, Вы ввели: {VALUE}'],
+    maxLength: [300, 'Поле должно содержать меньше 20 символов, Вы ввели: {VALUE}'],
+  },
+  // телефон клиента, если неизвестно, то +79781234567
   phone: {
     type: String,
     required: [true, 'это поле обязательно для заполнения'],
@@ -147,7 +147,7 @@ const clientSchema = new Schema({
     },
     default: '+79780000000',
   },
-  //источник клиента, если неизвестно, то неизвестно
+  // источник клиента, если неизвестно, то неизвестно
   source: {
     type: String,
     default: 'неизвестно',
@@ -171,14 +171,14 @@ const clientSchema = new Schema({
       message: 'Номер телефона должен состоять из 11 цифр'
     }
   },
-  //дети клиента, если неизвестно, то false
+  // дети клиента, если неизвестно, то false
   childBool: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
   // количество детей
-  childNumber: {
+  childCount: {
     type: Number,
     default: 0
   },
@@ -190,7 +190,7 @@ const clientSchema = new Schema({
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
-  //фото клиента, если неизвестно, то 'http://vk.com'
+  // фото клиента, если неизвестно, то 'http://vk.com'
   avatar: {
     type: String,
     default: 'http://vk.com',
@@ -199,7 +199,7 @@ const clientSchema = new Schema({
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
   },
-  //vk клиента, если неизвестно, 'http://vk.com'
+  // vk клиента, если неизвестно, 'http://vk.com'
   vk: {
     type: String,
     // unique: true,
@@ -217,6 +217,20 @@ const clientSchema = new Schema({
       validator: (url) => isURL(url), // проверка на валидность ссылки на фото
       message: 'Фото должно быть в формате ссылки типа https://example.com' // сообщение об ошибке
     }
+  },
+  // элекронный адрес клиента
+  email: {
+    type: String,
+    validate: {
+      validator: (email) => isEmail(email),
+      message: 'Email должен быть в формате example@example.com'
+    }
+  },
+  // пол клиента
+  sex: {
+    type: Boolean,
+    required: [true, 'нужно указать пол'],
+    default: true,
   },
   // продвинутый клиент, если неизвестно, false
   advanced: {
@@ -254,7 +268,7 @@ const clientSchema = new Schema({
     required: [true, 'это поле обязательно для заполнения'],
     default: false,
   },
-  //заполнил ли журнал безопасности
+  // заполнил ли журнал безопасности
   safety: {
     type: Boolean,
     required: [true, 'это поле обязательно для заполнения'],

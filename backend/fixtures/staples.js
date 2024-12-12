@@ -1,10 +1,10 @@
-const staple = require("../../models/staple")
+const staple = require("../models/staple")
 
 // данные для теста конюшен
 module.exports = {
   staple: {
     openedOn: "1.01.2001",
-    name: "ЧКК Тест",
+    name: "ЧКК",
     address: "г. Москва",
     image: "https://vk.com",
     website: "https://vk.com",
